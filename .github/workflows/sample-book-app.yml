@@ -10,10 +10,7 @@ jobs:
     runs-on: self-hosted
     steps:
       - uses: actions/checkout@v4
-      - name: Building docker image
-        run: |
-          docker build -t mtararujs/sample-book-app .
-      - run: docker push mtararujs/sample-book-app
+      - used: ./.github/action/build
   deploy-dev:
     runs-on: self-hosted
     needs: [build-docker-image]
