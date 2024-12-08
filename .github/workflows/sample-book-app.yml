@@ -9,7 +9,10 @@ jobs:
   build-docker-image:
     runs-on: self-hosted
     steps:
-      - run: echo "Building docker image.." 
+      - name: Building docker image
+        run: |
+          sh "docker build -t mtararujs/sample-book-app ."
+      - run: sh "docker push mtararujs/sample-book-app"
   deploy-dev:
     runs-on: self-hosted
     needs: [build-docker-image]
