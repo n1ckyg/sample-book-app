@@ -1,0 +1,26 @@
+name: "Deploy Node App"
+description: "Composite action to deploy our node app using pm2"
+inputs:
+  environment:
+    description: 'Environment where to execute tests against'
+    required: true
+  test-suite:
+    description: 'Testing suite which needs to be executed'
+    default: 'BOOKS'
+runs:
+  using: composite
+  steps:
+    - uses: actions/checkout@v4
+      with:
+        repository: 'mtararujs/api-automation'
+        ref: 'books_tests'
+    - name: Print step name
+      run: echo "Testing ${{ inputs.test-suite }} test set on ${{ inputs.environment }} has started.."
+      shell: bash
+    - name: Install all dependencies
+      run: npm install
+      shell: bash
+    - name: Run API tests
+      run: npm run ${{ inputs.test-suite }} ${{ inputs.test-suite }}_${{ inputs.environment }}
+      shell: bash
+
