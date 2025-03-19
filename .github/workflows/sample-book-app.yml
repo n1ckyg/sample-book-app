@@ -7,48 +7,48 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - uses: actions/checkout@v4
       - name: Print step name
         run: echo "Building of node application is starting.."
   deploy-dev:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: [build]
     steps:
       - uses: actions/checkout@v4
       - name: Print step name
         run: echo "Deployment to DEV has started.."
   test-dev:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: [deploy-dev]
     steps:
       - uses: actions/checkout@v4
       - name: Print step name
         run: echo "Testing BOOKS test set on DEV has started.."
   deploy-stg:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: [test-dev]
     steps:
       - uses: actions/checkout@v4
       - name: Print step name
         run: echo "Deployment to STG has started.."
   test-stg:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: [deploy-stg]
     steps:
       - uses: actions/checkout@v4
       - name: Print step name
         run: echo "Testing BOOKS test set on STG has started.."
   deploy-prd:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: [test-stg]
     steps:
       - uses: actions/checkout@v4
       - name: Print step name
         run: echo "Deployment to PRD has started.."
   test-prd:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: [deploy-prd]
     steps:
       - uses: actions/checkout@v4
