@@ -33,7 +33,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          repository: '/mtararujs/api-automation'
+          repository: 'mtararujs/api-automation'
           ref: 'books_tests'
       - name: Print step name
         run: echo "Testing BOOKS test set on DEV has started.."
