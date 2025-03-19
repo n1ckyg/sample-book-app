@@ -10,10 +10,6 @@ inputs:
 runs:
   using: composite
   steps:
-    - uses: actions/checkout@v4
-      with:
-        repository: 'mtararujs/api-automation'
-        ref: 'books_tests'
     - name: Print step name
       run: echo "Testing ${{ inputs.test-suite }} test set on ${{ inputs.environment }} has started.."
       shell: bash
