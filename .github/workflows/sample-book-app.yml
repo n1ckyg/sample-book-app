@@ -24,9 +24,9 @@ jobs:
       - name: Install all dependencies
         run: npm install
       - name: Delete existing pm2 service
-        run: pm2 delete \"books-DEV\" || exit 0
+        run: pm2 delete "books-DEV" || exit 0
       - name: Run sample-book-app pm2 service
-        run: pm2 start -n \"books-DEV\" index.js -- 1010
+        run: pm2 start -n "books-DEV" index.js -- 1010
   test-dev:
     runs-on: self-hosted
     needs: [deploy-dev]
