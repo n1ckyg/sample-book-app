@@ -16,14 +16,10 @@ jobs:
     needs: [build]
     steps:
       - uses: actions/checkout@v4
-      - name: Print step name
-        run: echo "Deployment to DEV has started.."
-      - name: Install all dependencies
-        run: npm install
-      - name: Delete existing pm2 service
-        run: pm2 delete "books-DEV" || exit 0
-      - name: Run sample-book-app pm2 service
-        run: pm2 start -n "books-DEV" index.js -- 1010
+      - uses: ./.github/actions/deploy
+        with:
+          environment: 'DEV'
+          port: '1010'
   test-dev:
     runs-on: self-hosted
     needs: [deploy-dev]
@@ -43,8 +39,10 @@ jobs:
     needs: [test-dev]
     steps:
       - uses: actions/checkout@v4
-      - name: Print step name
-        run: echo "Deployment to STG has started.."
+      - uses: ./.github/actions/deploy
+        with:
+          environment: 'STG'
+          port: '2020'
   test-stg:
     runs-on: self-hosted
     needs: [deploy-stg]
@@ -57,8 +55,10 @@ jobs:
     needs: [test-stg]
     steps:
       - uses: actions/checkout@v4
-      - name: Print step name
-        run: echo "Deployment to PRD has started.."
+      - uses: ./.github/actions/deploy
+        with:
+          environment: 'PRD'
+          port: '3030'
   test-prd:
     runs-on: self-hosted
     needs: [deploy-prd]
