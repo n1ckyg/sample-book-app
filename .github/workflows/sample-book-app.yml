@@ -40,7 +40,7 @@ jobs:
       - name: Install all dependencies
         run: npm install
       - name: Run API tests
-        run: npm run BOOKS BO0KS_DEV
+        run: npm run BOOKS BOOKS_DEV
   deploy-stg:
     runs-on: self-hosted
     needs: [test-dev]
