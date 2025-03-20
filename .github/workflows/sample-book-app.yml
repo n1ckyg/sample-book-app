@@ -35,7 +35,7 @@ jobs:
           path: 'sample-book-app'
       - name: Run a one-line script
         run: ls
-      - uses: ./sample-book-app/.github/actions/deploy
+      - uses: ./sample-book-app/.github/actions/test
         with:
           environment: 'DEV'
           test-suite: 'BOOKS'
