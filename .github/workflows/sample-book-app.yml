@@ -32,10 +32,11 @@ jobs:
         with:
           repository: 'mtararujs/sample-book-app'
           ref: 'main'
-          path: 'sample-book-app'
+          sparse-checkout: |
+            .github
       - name: Run a one-line script
         run: ls
-      - uses: ./sample-book-app/.github/actions/test
+      - uses: ./.github/actions/test
         with:
           environment: 'DEV'
           test-suite: 'BOOKS'
