@@ -30,12 +30,12 @@ jobs:
           ref: 'books_tests'
       - uses: actions/checkout@v4
         with:
-          repository: 'mtararujs/sample-book-app/tree/main/.github/actions/test'
+          repository: 'mtararujs/sample-book-app'
           ref: 'main'
-          path: 'test-action'
+          path: 'sample-book-app'
       - name: Run a one-line script
         run: ls
-      - uses: ./test-action
+      - uses: ./sample-book-app/.github/actions/deploy
         with:
           environment: 'DEV'
           test-suite: 'BOOKS'
