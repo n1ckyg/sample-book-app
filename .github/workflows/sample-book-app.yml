@@ -28,7 +28,14 @@ jobs:
         with:
           repository: 'mtararujs/api-automation'
           ref: 'books_tests'
-      - uses: ./.github/actions/test
+      - uses: actions/checkout@v4
+        with:
+          repository: 'mtararujs/sample-book-app/tree/main/.github/actions/test'
+          ref: 'main'
+          path: 'test-action'
+      - name: Run a one-line script
+        run: ls
+      - uses: ./test-action
         with:
           environment: 'DEV'
           test-suite: 'BOOKS'
