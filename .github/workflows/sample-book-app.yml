@@ -28,7 +28,13 @@ jobs:
         with:
           repository: 'mtararujs/api-automation'
           ref: 'books_tests'
-      - uses: ./.github/actions/test
+      - uses: actions/checkout@v4
+        with:
+          repository: 'mtararujs/sample-book-app'
+          path: 'sample-book-app'
+          sparse-checkout: |
+            .github
+      - uses: ./sample-book-app/.github/actions/test
         with:
           environment: 'DEV'
           test-suite: 'BOOKS'
