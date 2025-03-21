@@ -45,6 +45,10 @@ jobs:
     runs-on: self-hosted
     needs: [deploy-stg]
     steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: 'mtararujs/api-automation'
+          ref: 'books_tests'
       - uses: ./.github/actions/test
         with:
           environment: 'DEV'
@@ -62,6 +66,10 @@ jobs:
     runs-on: self-hosted
     needs: [deploy-prd]
     steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: 'mtararujs/api-automation'
+          ref: 'books_tests'
       - uses: ./.github/actions/test
         with:
           environment: 'DEV'
