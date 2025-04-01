@@ -22,7 +22,7 @@ pipeline {
         stage('Testu-izpilde-dev-vide') {
             steps {
                 script{
-                    test("DEV")
+                    test("BOOKS", "DEV")
                 }
             }
         }
@@ -38,7 +38,7 @@ pipeline {
         stage('Testu-izpilde-stg-vide') {
             steps {
                 script{
-                    test("STG")
+                    test("BOOKS", "STG")
                 }
             }
         }
@@ -54,7 +54,7 @@ pipeline {
         stage('Testu-izpilde-prd-vide') {
             steps {
                script{
-                    test("PRD")
+                    test("BOOKS","PRD")
                 }
             }
         }
@@ -79,7 +79,8 @@ def deploy(String enviroment, int port){
     bat "node_modules\\.bin\\pm2 start -n \"books-${environment}\" index.js -- ${port}"
 }
 
-def test(String enviroment){
-    echo "Testing to ${enviroment} started.."
+def test(String test_Set, String enviroment){
+    echo "Testing ${test_Set} test set to ${enviroment} started.."
+    bat "npm run ${test_Set} ${test_Set}_${enviroment}"
 }
 
