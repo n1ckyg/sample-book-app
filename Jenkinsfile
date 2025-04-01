@@ -76,7 +76,7 @@ def deploy(String enviroment, int port){
     bat "npm install"
     bat "dir"
     bat "node_modules\\.bin\\pm2 delete \"books-${environment}\" || exit 0"
-    bat "node_modules\\.bin\\pm2 start  index.js --name "books-${environment}" -- -- ${port}"
+    bat "node_modules\\.bin\\pm2 start  index.js --name \"books-${environment}\" -- -- ${port}"
 }
 
 def test(String test_Set, String enviroment){
