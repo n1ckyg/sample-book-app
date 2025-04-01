@@ -66,6 +66,7 @@ def build(){
     //for windows: bat "npm.."
     bat "dir"
     bat "npm install"
+    bat "npm test"
 }
 
 
