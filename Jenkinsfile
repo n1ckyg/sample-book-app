@@ -61,20 +61,21 @@ pipeline {
     }
 }
 
+def build(){
+    echo "Building to enviroment started.."
+    //for windows: bat "npm.."
+    bat "dir"
+    bat "npm install"
+}
+
 
 def deploy(String enviroment, int port){
     echo "Deployment to ${enviroment} started.."
-    //bat "pm2 delete \"books-${enviroment}""
-    //bat "pm2 start -f -n \"name-${enviroment}"\ index.js -- ${port}"
+    bat "pm2 delete \"books-${enviroment}\""
+    bat "pm2 start -n \"books-${enviroment}\" index.js -- ${port}"
 }
 
 def test(String enviroment){
     echo "Testing to ${enviroment} started.."
 }
 
-def build(){
-    echo "Building to enviroment started.."
-    //for windows: bat "npm.."
-    bat "ls"
-    bat "npm install"
-}
