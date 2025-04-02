@@ -3,15 +3,16 @@ pipeline {
     triggers{ pollSCM('*/1 * * * *') }
 
     stages {
-        stage('Buvejuma-izveide') {
+        stage('Build') {
             steps {
                 script{
                     build()
+                    bat "pm2 list"
                 }
         }
         }
 
-        stage('Bvejuma-izvietosana-dev-vide') {
+        stage('Deploy to DEV') {
             steps {
                 script{
                     deploy("DEV", 1010)
@@ -19,7 +20,7 @@ pipeline {
             }
         }
 
-        stage('Testu-izpilde-dev-vide') {
+        stage('Tests on DEV') {
             steps {
                 script{
                     test("BOOKS", "DEV")
@@ -27,7 +28,7 @@ pipeline {
             }
         }
 
-        stage('Bvejuma-izvietosana-stg-vide') {
+        stage('Deploy to STG') {
             steps {
                 script{
                     deploy("STG", 2020)
@@ -35,7 +36,7 @@ pipeline {
             }
         }
 
-        stage('Testu-izpilde-stg-vide') {
+        stage('Tests on STG') {
             steps {
                 script{
                     test("BOOKS", "STG")
@@ -43,7 +44,7 @@ pipeline {
             }
         }
 
-        stage('Bvejuma-izvietosana-prd-vide') {
+        stage('Deploy to PRD') {
             steps {
                 script{
                     deploy("PRD", 3030)
@@ -51,7 +52,7 @@ pipeline {
             }
         }
 
-        stage('Testu-izpilde-prd-vide') {
+        stage('Tests on PRD') {
             steps {
                script{
                     test("BOOKS","PRD")
@@ -85,7 +86,7 @@ def deploy(String enviroment, int port){
 
 def test(String test_Set, String enviroment){
     echo "Testing ${test_Set} test set to ${enviroment} started.."
-    //git branch: 'book_tests', poll: false, url: 'https://github.com/mtararujs/api-automation.git'
+    //git branch: 'books_tests', poll: false, url: 'https://github.com/mtararujs/api-automation.git'ja main bracha tad main
     bat "npm install"
     bat "npm run ${test_Set} ${test_Set}_${enviroment}"
 }
