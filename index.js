@@ -36,7 +36,3 @@ const defaultPort = 1050;
 // Get port from command-line argument or use default port
 const port = process.argv[2] || defaultPort;
 
-// Start the server
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
-});

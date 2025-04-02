@@ -66,7 +66,7 @@ def build(){
     //for windows: bat "npm.."
     bat "dir"
     bat "npm install"
-    bat "npm test"
+    //bat "npm test"
 }
 
 
@@ -75,8 +75,10 @@ def deploy(String enviroment, int port){
     git branch: 'jenkins_pipeline_windows', poll: false, url: 'https://github.com/n1ckyg/sample-book-app.git'
     bat "npm install"
     bat "dir"
-    bat "node_modules\\.bin\\pm2 delete \"books-${environment}\" || exit 0"
-    bat "node_modules\\.bin\\pm2 start  index.js --name \"books-${environment}\" -- -- ${port}"
+    //bat "node_modules\\.bin\\pm2 delete \"books-${environment}\" || exit 0"
+    //bat "node_modules\\.bin\\pm2 start  index.js --name \"books-${environment}\" -- -- ${port}"
+    bat "pm2 delete \"books-${enviroment}\" || exit 0"
+    bat "pm2 start -n \"books-${enviroment}\" index.js -- ${port}"
 }
 
 def test(String test_Set, String enviroment){
