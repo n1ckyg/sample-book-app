@@ -77,8 +77,10 @@ def deploy(String enviroment, int port){
     //bat "dir"
     //bat "node_modules\\.bin\\pm2 delete \"books-${environment}\" || exit 0"
     //bat "node_modules\\.bin\\pm2 start  index.js --name \"books-${environment}\" -- -- ${port}"
+    bat "pm2 list"
     bat "pm2 delete \"books-${enviroment}\" || exit 0"
     bat "pm2 start -n \"books-${enviroment}\" index.js -- ${port}"
+    bat "pm2 list"
 }
 
 def test(String test_Set, String enviroment){
