@@ -7,7 +7,6 @@ pipeline {
             steps {
                 script{
                     build()
-                    bat "pm2 list"
                 }
         }
         }
@@ -71,7 +70,7 @@ def build(){
 }
 
 
-def deploy(String enviroment, int port){
+def deploy(String environment, int port){
     echo "Deployment to ${environment} has started.."
     //git branch: 'jenkins_pipeline_windows', poll: false, url: 'https://github.com/n1ckyg/sample-book-app.git'
     //bat "npm install"
@@ -79,15 +78,15 @@ def deploy(String enviroment, int port){
     //bat "node_modules\\.bin\\pm2 delete \"books-${environment}\" || exit 0"
     //bat "node_modules\\.bin\\pm2 start  index.js --name \"books-${environment}\" -- -- ${port}"
     bat "pm2 list"
-    bat "pm2 delete \"books-${enviroment}\" || exit 0"
-    bat "pm2 start -n \"books-${enviroment}\" index.js -- ${port}"
+    bat "pm2 delete \"books-${environment}\" || exit 0"
+    bat "pm2 start -n \"books-${environment}\" index.js -- ${port}"
     bat "pm2 list"
 }
 
-def test(String test_Set, String enviroment){
-    echo "Testing ${test_Set} test set to ${enviroment} started.."
+def test(String test_Set, String environment){
+    echo "Testing ${test_Set} test set to ${environment} started.."
     //git branch: 'books_tests', poll: false, url: 'https://github.com/mtararujs/api-automation.git'ja main bracha tad main
     bat "npm install"
-    bat "npm run ${test_Set} ${test_Set}_${enviroment}"
+    bat "npm run ${test_Set} ${test_Set}_${environment}"
 }
 
