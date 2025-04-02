@@ -62,7 +62,7 @@ pipeline {
 }
 
 def build(){
-    echo "Building to enviroment started.."
+    echo "Building of node application has started..."
     //for windows: bat "npm.."
     bat "dir"
     bat "npm install"
@@ -72,9 +72,9 @@ def build(){
 
 def deploy(String enviroment, int port){
     echo "Deployment to ${environment} has started.."
-    git branch: 'jenkins_pipeline_windows', poll: false, url: 'https://github.com/n1ckyg/sample-book-app.git'
-    bat "npm install"
-    bat "dir"
+    //git branch: 'jenkins_pipeline_windows', poll: false, url: 'https://github.com/n1ckyg/sample-book-app.git'
+    //bat "npm install"
+    //bat "dir"
     //bat "node_modules\\.bin\\pm2 delete \"books-${environment}\" || exit 0"
     //bat "node_modules\\.bin\\pm2 start  index.js --name \"books-${environment}\" -- -- ${port}"
     bat "pm2 delete \"books-${enviroment}\" || exit 0"
